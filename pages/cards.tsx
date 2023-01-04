@@ -1,5 +1,6 @@
 import Image from "next/image"
 import {AiOutlineTwitter, AiOutlineLinkedin, AiOutlineFacebook, AiOutlineGithub, AiOutlineInstagram} from "react-icons/ai"
+import {BsFillBookmarkHeartFill, BsFillShareFill} from 'react-icons/bs'
 
 const user =  {
     name: "John D. Smith",
@@ -14,6 +15,7 @@ const user =  {
     followers: 35.6,
     following: 1.2,
     visited: 382,    
+    blogCardTitle: "Why developers are not happy...",
   }
 
 const FirstProfileCard = () => {
@@ -66,6 +68,7 @@ const SecondProfileCard = () => {
     followButton: "bg-fuchsia-700 text-purple-50 w-20 h-fit p-2 rounded border border-violet-200 border-solid",
     messageButton: "bg-zinc-900 text-purple-50 w-20 h-fit p-2 rounded border border-violet-200 border-solid",
   }
+  const stats = []
   return(
     <div className={cardStyle.card}>
         <div className={cardStyle.cardImage}>
@@ -118,12 +121,41 @@ const SecondProfileCard = () => {
     </div>
   )
 }
-  
+
+
+import React from 'react';
+
+const BlogCard = () => {
+  return (
+    <div className="dark:bg-slate-700 dark:text-gray-50 w-5/6 h-96 shadow-2xl mx-auto rounded-lg lg:w-1/2 ">
+      <div className="w-full rounded-lg h-5/6 relative">
+     <Image
+              src="/images/profilepicture.jpg"
+              className="object-cover center-image hover:object-left-top rounded-lg"
+              fill={true}              
+              alt=""
+              />      
+              </div>
+    <div className="flex h-1/6 px-4">
+      <h4 className="text-xl sm:text-2xl my-auto text-center mr-4">
+        {user.blogCardTitle}
+      </h4>
+     <div className="flex gap-4 my-auto ml-auto text-2xl [&>*]:opacity-10 hover:[&>*]:opacity-100 hover:[&>*]:text-3xl [&>*]:cursor-pointer">
+     <BsFillBookmarkHeartFill className="hover:text-pink-500"/>
+      <BsFillShareFill className=""/>
+     </div>
+    </div>
+    </div>
+  );
+};
+
+
   const cards = () => {
     return (
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 my-8">
    <FirstProfileCard/>
    <SecondProfileCard/>
+   <BlogCard/>
       </div>
     );
   };
