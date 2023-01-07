@@ -16,6 +16,8 @@ const user =  {
     following: 1.2,
     visited: 382,    
     blogCardTitle: "Why developers are not happy...",
+    blogCardSubTitle: "The reason behind this, will let you speechless",
+    blogCategories: [{name:"Web development", color:"bg-purple-600"}, {name:"Work", color:"bg-teal-600"}, {name:"Computer science", color:"bg-green-600"}],
   }
 
 const FirstProfileCard = () => {
@@ -127,7 +129,7 @@ import React from 'react';
 
 const BlogCard = () => {
   return (
-    <div className="dark:bg-slate-700 dark:text-gray-50 w-5/6 h-96 shadow-2xl mx-auto rounded-lg lg:w-1/2 ">
+    <div className="bg-slate-100 dark:bg-slate-700 dark:text-gray-50 w-5/6 h-96 shadow-2xl mx-auto rounded-lg lg:w-1/2 ">
       <div className="w-full rounded-lg h-5/6 relative">
      <Image
               src="/images/profilepicture.jpg"
@@ -150,12 +152,56 @@ const BlogCard = () => {
 };
 
 
+const SecondBlogCard = () => {
+  return (
+    <div className="w-72 h-72 relative mx-auto [&>*:nth-child(1)]:hover:translate-y-56 rounded-t-lg bg-slate-100 dark:bg-slate-800">
+
+        <div className="w-full absolute h-full top-14 left-0  transition-transform duration-1000 ease-in delay-100 bg-inherit pt-9 px-4 rounded-lg flex flex-col">
+          <div className="flex flex-wrap gap-2">
+         {user.blogCategories.map((el, index) => <h6 key={index} className={el.color+" rounded w-fit px-1 text-slate-100"} >{el.name}</h6>)}
+          </div>
+          <h2 className="text-xl font-bold">{user.blogCardTitle}</h2>
+          <h4 className="text-sm opacity-80 text-gray-900">{user.blogCardSubTitle}</h4>
+          <div className="flex mt-auto mb-2 gap-4">
+            <div className="relative w-12 h-12 rounded-full">
+              <Image
+              src="/images/profilepicture.jpg"
+              className="object-cover rounded-full"
+              fill={true}              
+              alt=""
+              />   
+
+            </div>
+
+              <div className="">
+                <h2 className="font-serif">by <span className="text-sky-700">{user.name}</span></h2>
+                <h5 className="font-thin text-sm opacity-75">2H ago</h5>
+              </div>
+          </div>
+        </div>
+
+      <div className="w-full absolute bg-inherit h-full top-0 left-0 z-20 rounded-t-lg">
+        <div className="w-full h-full relative z-20 rounded-t-lg">
+        <Image
+              src="/images/profilepicture.jpg"
+              className="object-cover center-image hover:object-left-top z-10 rounded-lg"
+              fill={true}              
+              alt=""
+              />      
+        </div>
+
+      </div>
+    </div>
+  )
+}
+
   const cards = () => {
     return (
-      <div className="flex flex-col gap-8 my-8">
+      <div className="flex flex-col gap-8 my-12">
    <FirstProfileCard/>
    <SecondProfileCard/>
    <BlogCard/>
+   <SecondBlogCard/>
       </div>
     );
   };
