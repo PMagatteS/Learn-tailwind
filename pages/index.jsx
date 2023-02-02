@@ -12,9 +12,11 @@ export default function Home() {
             </Link>
             
           <div className="w-full h-full relative shadow-lg rounded">
+            <Link href={el}>
             <Image src={'/images/'+el+'.svg'} alt={el} fill={true} className='rounded'>
 
             </Image>
+            </Link>
           </div>
          </div>
         ))}

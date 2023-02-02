@@ -16,7 +16,7 @@ const Drawer = ({toggle}) => {
         <div className="bg-inherit h-24 mt-12">
         <Link href='/'><div  className="p-2 text-xl w-full h-auto text-center hover:[&>*]:bg-teal-700 hover:[&>*]:opacity-100 [&>*]:opacity-80 [&>*]:cursor-pointer"><p>Home</p></div></Link>
     {pages.map((el, index) => (<Link href={el} key={index}><div  className="p-2 text-xl w-full h-auto text-center hover:[&>*]:bg-teal-700 hover:[&>*]:opacity-100 [&>*]:opacity-80 [&>*]:cursor-pointer"><p>{el.charAt(0).toUpperCase() + el.slice(1)}</p></div></Link>))}
-        <button onClick={() => document.documentElement.classList.add('dark')}>dark</button>
+       
         </div>
             
             
