@@ -72,11 +72,11 @@ const NavbarThree = () => {
 
 const navbars = () => {
     return (
-        <>
+        <div className='flex flex-col gap-8 px-16'>
             <NavbarOne/>
             <NavbarTwo/>
             <NavbarThree/>
-        </>
+        </div>
     );
 };
 

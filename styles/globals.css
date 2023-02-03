@@ -7,7 +7,7 @@
       @apply bg-slate-300 dark:bg-slate-900;
     }
   }
-
+  
   .center-image{
     object-position: 0 25%;
   }

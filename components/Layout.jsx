@@ -7,7 +7,7 @@ const Layout = ({children}) => {
     return (
         <>
         <Navbar/>
-        <div className='flex flex-col gap-8 my-40 px-16'>
+        <div className='flex flex-col gap-8 my-40'>
             {children}
         </div>
         </>
