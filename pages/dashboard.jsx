@@ -63,13 +63,19 @@ const VerticalBarChart = () => {
         },
       };
 
-      const barPlugin = {
-        id: 'barplugin',
-        beforeDatasetsDraw(chart, args, pluginOptions){
-          const {ctx, data, chartArea: {top, width, height}, scale:{x, y}} = chart
-          ctx.save()
-        }
-      }
+      // const BarBackground = {
+      //   id: 'progressBar',
+      //   beforeDatasetsDraw(chart, args, pluginOptions){
+      //     const {ctx, data, chartArea: {top, bottom, left, right, width, height}, scales:{x, y}} = chart
+      //     ctx.save()
+      //     console.log(x);
+      //     const bgWidth =  width  / x.ticks.length  * data.datasets[0].barPercentage * data.datasets[0].categoryPercentage /4
+      //     ctx.fillRect(x.getPixelForValue(0)/4+bgWidth*2, 0, bgWidth, height) 
+      //     data.datasets[0].data.map((el, index) => {
+
+      //     })
+      //   }
+      // }
       
       const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
       
@@ -80,6 +86,8 @@ const VerticalBarChart = () => {
             label: 'Dataset 1',
             data: labels.map(() => faker.datatype.number({ min: 0, max: 100000 })),
             backgroundColor: 'rgb(15 118 110)',
+            barPercentage: 0.4,
+            categoryPercentage: 0.8, 
             
           },
           {
@@ -98,19 +106,22 @@ const VerticalBarChart = () => {
           },
         ],
       };
-    return <Bar options={options} data={data} plugins={[barPlugin]}/>
+    return <Bar options={options} data={data}/>
 }
 
 const LineChart = () => {
     const options = {
-
-        responsive: true,
-        maintainAspectRatio: false,
-         scales: {
+      pointBorderColor: 'transparent',
+      tension: 0.5,
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
           x: {
             ticks: {
                 display: false
-            }
+            },grid: {
+                display: false
+            },
         },          
         y: {
           ticks: {
@@ -138,13 +149,13 @@ const LineChart = () => {
             label: 'Dataset 1',
             data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
             borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            backgroundColor: 'transparent',
           },
           {
             label: 'Dataset 2',
             data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
             borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            backgroundColor: 'transparent',
           },
         ],
       };
@@ -156,22 +167,32 @@ const ProgressBarChart = () => {
   const options = {
   indexAxis: 'y',
   maintainAspectRatio: false,
+  borderRadius: 3,
   elements: {
     bar: {
-      borderWidth: 2,
+      borderWidth: 0,
     },
   },
   responsive: true,
    scales: {
           x: {
             ticks: {
-                display: false
-            }
+              display: false
+          },
+          grid: {
+            display: false,
+            drawBorder: false
+        }
         },          
         y: {
+          beginAtZero: true,
           ticks: {
               display: false
-          }
+          },
+          grid: {
+            display: false,
+            drawBorder: false
+        }
       }
       },
   plugins: {
@@ -185,6 +206,28 @@ const ProgressBarChart = () => {
   },
 };
 
+      const progressBar = {
+        id: 'progressBar',
+        beforeDatasetsDraw(chart, args, pluginOptions){
+          const {ctx, data, chartArea: {left, right, width, height}, scales:{y}} = chart
+          ctx.save()
+          const bgHeight = height  / y.ticks.length  * data.datasets[0].barPercentage * data.datasets[0].categoryPercentage
+          data.datasets[0].data.map((el, index) => {
+            const fontSize = 10          
+            ctx.font = `${fontSize}px sans serif`
+            ctx.fillStyle = data.datasets[0].backgroundColor[index]
+            ctx.textAlign = "right"
+            ctx.textBaseline = "center"
+            ctx.fillText(data.datasets[0].data[index] +'% ', right, y.getPixelForValue(index)-fontSize)
+
+
+            ctx.beginPath()
+            ctx.fillStyle = data.datasets[0].borderColor[index]
+            ctx.fillRect(left, y.getPixelForValue(index) - bgHeight/2, width, bgHeight)
+          })
+        }
+      }
+
 const labels = ['January', 'February', 'March', 'April'];
 
 const data = {
@@ -192,13 +235,15 @@ const data = {
   datasets: [
     {
       label: 'Dataset 1',
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      data: labels.map(() => faker.datatype.number({ min: 0, max: 100 })),
+      borderColor: ['rgba(31, 97, 141, 0.3)','rgba(34, 153, 84, 0.3)','rgba(176, 58, 46, 0.3)','rgba(3212, 172, 13 , 0.3)', ],
+      backgroundColor: ['rgba(31, 97, 141, 1)','rgba(34, 153, 84, 1)','rgba(176, 58, 46, 1)','rgba(3212, 172, 13 , 1)', ],
+      barPercentage: 0.3,
+      categoryPercentage: 0.8,
     },
   ],
 };
-  return <Bar options={options} data={data} />;
+  return <Bar options={options} data={data} plugins={[progressBar]} />;
 }
 
 const DoughnutElement = () => {
