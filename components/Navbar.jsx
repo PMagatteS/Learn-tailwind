@@ -1,8 +1,8 @@
 import {BsChevronRight, BsChevronLeft} from 'react-icons/bs'
 import {pages} from "../constant"
 import Link from 'next/link'
-import { useState } from 'react'
-
+import React, { useState } from 'react'
+import {BsSunFill, BsMoonFill} from 'react-icons/bs'
 
 const Drawer = ({toggle}) => {
     return(
@@ -30,10 +30,16 @@ const Navbar = () => {
     const toggleDrawer = () => {
         setOpenDrawer(!openDrawer) 
     }
+    const [dark, setDark] = useState(false)
+    const setDarkMode = () => {
+            setDark((prviousState) => !prviousState)
+            document.documentElement.classList.toggle('dark')
+    }
     return (
-        <div className="h-14 w-screen bg-teal-800 flex items-center text-white text-xl fixed top-0 z-50">
-            <BsChevronRight className='mr-auto  ml-2' onClick={toggleDrawer}/>
+        <div className="h-14 w-full bg-teal-800 flex items-center justify-between text-white text-xl fixed top-0 z-50">
+            <BsChevronRight className='ml-2' onClick={toggleDrawer}/>
             {openDrawer&&<Drawer toggle={toggleDrawer}/>}
+            {dark?<BsSunFill className='mr-2 text-2xl text-amber-400' onClick={setDarkMode}/>:<BsMoonFill className='mr-2 text-2xl text-sky-700' onClick={setDarkMode}/>}
         </div>
     );
 };
