@@ -7,7 +7,7 @@ import {BsSunFill, BsMoonFill} from 'react-icons/bs'
 const Drawer = ({toggle}) => {
     return(
         <>
-        <div className="w-72 h-screen absolute top-0 left-0 z-50 bg-teal-600">
+        <div className="md:w-72 w-full h-screen absolute top-0 left-0 z-50 bg-teal-600">
 
             <div className="h-14 p-3 bg-teal-700">
                 

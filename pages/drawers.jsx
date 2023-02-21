@@ -56,7 +56,7 @@ export const SimpleDrawer = () => {
 
 const ProfileDrawer = () => {
   return (
-    <div className="w-60 h-full bg-white">
+    <div className="w-60 h-full dark:bg-slate-700  bg-white">
       <div className="w-full h-1/3 bg-cyan-900 mb-8 pt-6">
         <div className="w-14 h-14 relative rouded-full mx-auto">
           <Image
@@ -70,7 +70,7 @@ const ProfileDrawer = () => {
         <h2 className="text-center text-slate-200 py-4">John D. Smith</h2>
       </div>
 
-      <div className="text-cyan-900">
+      <div className="dark:text-slate-200 text-cyan-900">
         <DrawerContent />
       </div>
     </div>
@@ -79,7 +79,7 @@ const ProfileDrawer = () => {
 
 const drawer = () => {
   return (
-    <div className="w-screen h-screen flex justify-center gap-10">
+    <div className="w-screen h-screen flex flex-wrap justify-center gap-10">
       <SimpleDrawer />
       <ProfileDrawer />
     </div>

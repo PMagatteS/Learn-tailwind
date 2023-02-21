@@ -19,8 +19,9 @@ const DoughnutChart = () => {
               '#a471d6',
               '#e5e5e5'
             ],
-           
-            borderWidth: 3,
+            
+            borderColor: 'transparent',
+            borderWidth: 5,
           },
         ],
       };
@@ -248,7 +249,7 @@ const data = {
 
 const DoughnutElement = () => {
   return( 
-    <div className="min-h-[340px] bg-white table w-[340px] shadow-2xl">
+    <div className="dark:bg-slate-600 min-h-[340px] bg-white table w-11/12 md:w-[340px] shadow-2xl">
     <div className="w-full h-10 bg-emerald-900 text-slate-200 text-lg text-center">
         <h2>Doughnut</h2>
     </div>
@@ -266,7 +267,7 @@ const DoughnutElement = () => {
 
 const VerticalElement = () => {
   return(
-    <div className=" min-h-[340px] table  bg-white relative w-[680px] shadow-2xl">
+    <div className="dark:bg-slate-600 w-11/12 min-h-[340px] table  bg-white relative md:w-[680px] shadow-2xl">
     <div className="w-full h-10 bg-emerald-900 text-slate-200 text-lg text-center">
           <h2>Vertical</h2>
       </div>
@@ -283,7 +284,7 @@ const VerticalElement = () => {
 
 const LineChartElement = () => {
   return(
-    <div className="w-[680px] h-[340px] bg-white table shadow-2xl">
+    <div className="dark:bg-slate-600 w-11/12 md:w-[680px] h-[340px] bg-white table shadow-2xl">
     <div className="w-full h-10 bg-emerald-900 text-slate-200 text-lg text-center">
         <h2>Line</h2>
     </div>
@@ -296,7 +297,7 @@ const LineChartElement = () => {
 
 const ProgressBarElement = () => {
   return( 
-  <div className="w-[340px] h-[340px] bg-white table relative shadow-2xl">
+  <div className="dark:bg-slate-600 w-11/12 md:w-[340px] h-[340px] bg-white table relative shadow-2xl">
   <div className="w-full h-10 bg-emerald-900 text-slate-200 text-lg text-center">
       <h2>Progress Bar</h2>
   </div>
